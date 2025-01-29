@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;// sahneleri yönetmek için gerekli.
 public class PlayerInputManager : MonoBehaviour
@@ -10,6 +11,9 @@ public class PlayerInputManager : MonoBehaviour
                                    //iþlemi yaptýktan sonra classa eriþebildik
     [SerializeField] Vector2 movementInput; //input data
 
+    [SerializeField] float verticalInput;
+    [SerializeField] float horizontalInput;
+    [SerializeField] float moveAmount;
     
     private void Awake()
     {
@@ -60,5 +64,30 @@ public class PlayerInputManager : MonoBehaviour
     {
         SceneManager.activeSceneChanged -= OnSceneChange;//bu game object yokedildiðinde eventimizden unSubscribe olmasý için.
         //bu memory leaks olmamasý için 
+    }
+
+    private void Update()
+    {
+        HandleMovementInput();    
+    }
+
+    private void HandleMovementInput()
+    {
+        verticalInput = movementInput.y;
+        horizontalInput = movementInput.x;
+
+        moveAmount = Mathf.Clamp01(Mathf.Abs(verticalInput)+Mathf.Abs(horizontalInput));
+
+        //clamping inputs for more souls like feel.
+        if(moveAmount > 0 && moveAmount <= 0.5f)
+        {
+            moveAmount = 0.5f;
+        }
+        else if (moveAmount > 0.5f && moveAmount <= 1)
+        {
+
+            moveAmount = 1;
+        }
+
     }
 }
