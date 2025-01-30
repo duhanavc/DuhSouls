@@ -11,9 +11,10 @@ public class PlayerInputManager : MonoBehaviour
                                    //iþlemi yaptýktan sonra classa eriþebildik
     [SerializeField] Vector2 movementInput; //input data
 
-    [SerializeField] float verticalInput;
-    [SerializeField] float horizontalInput;
-    [SerializeField] float moveAmount;
+    public float verticalInput;
+    public float horizontalInput;
+
+    public float moveAmount;
     
     private void Awake()
     {
