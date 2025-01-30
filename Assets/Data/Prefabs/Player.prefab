@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 3e83c8ea3c426df49a0ba26a973d2b45,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.26782608
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3e83c8ea3c426df49a0ba26a973d2b45,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.00000047683716
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3e83c8ea3c426df49a0ba26a973d2b45,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.592
+      value: 0.30283737
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3e83c8ea3c426df49a0ba26a973d2b45,
         type: 3}
@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5987bbfefff9b4c943bcbc68eea218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterController: {fileID: 0}
 --- !u!114 &-397814784396744787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,8 +124,9 @@ MonoBehaviour:
   moveAmount: 0
   verticalMovement: 0
   horizontalMovement: 0
-  runningSpeed: 0
-  walkingSpeed: 0
+  runningSpeed: 5
+  walkingSpeed: 3
+  rotationSpeed: 7
 --- !u!143 &-5145705848306025468
 CharacterController:
   m_ObjectHideFlags: 0

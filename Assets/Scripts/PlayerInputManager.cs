@@ -35,6 +35,10 @@ public class PlayerInputManager : MonoBehaviour
         SceneManager.activeSceneChanged += OnSceneChange; //basitçe sahne geçiþlerinde bu mantýðý çalýþmasýný saðlýyan bir evente subscribe oluyoruz
         instance.enabled = false; //sadece world scene gidildiðinde kontrollerin aktif olmasýný istiyoruz.
     }
+    private void Update()
+    {
+        HandleMovementInput();    
+    }
     private void OnSceneChange(Scene _oldScene, Scene _newScene)//args0 ve args1 bizim önceki ve sonraki sahnemiz
     {
         if(_newScene.buildIndex == WorldSaveManager.instance.GetWorldSceneIndex())//eðer world sahnesine gidiyorsak input scriptini enable et.
@@ -67,9 +71,19 @@ public class PlayerInputManager : MonoBehaviour
         //bu memory leaks olmamasý için 
     }
 
-    private void Update()
+    private void OnApplicationFocus(bool focus)
     {
-        HandleMovementInput();    
+        if (enabled)
+        {
+            if (focus)
+            {
+                playerControls.Enable();
+            }
+            else
+            {
+                playerControls.Disable();
+            }
+        }
     }
 
     private void HandleMovementInput()
@@ -91,4 +105,7 @@ public class PlayerInputManager : MonoBehaviour
         }
 
     }
+
+
+    
 }
