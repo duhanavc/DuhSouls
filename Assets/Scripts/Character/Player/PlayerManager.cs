@@ -11,11 +11,18 @@ public class PlayerManager : CharacterManager
         base.Awake();
 
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
+        PlayerCamera.instance.player = this;
     }
 
     protected override void Update()
     {
         base.Update();
         playerLocomotionManager.HandleAllMovement();
+    }
+
+    protected override void LateUpdate()
+    {
+        base.LateUpdate(); 
+        PlayerCamera.instance.HandleAllCameraActions(); // kamera actionlarýný late update e yazýyoruz.
     }
 }

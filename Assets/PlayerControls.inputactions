@@ -72,6 +72,34 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Player Camera",
+            "id": "09822681-8814-4820-9623-423b8f539d15",
+            "actions": [
+                {
+                    "name": "Camera Controlls",
+                    "type": "PassThrough",
+                    "id": "5f85a498-37a9-4018-a2ee-bdffa8ae612f",
+                    "expectedControlType": "Delta",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "71880f20-d3b8-44eb-8cbc-32844b3d0450",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Camera Controlls",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
