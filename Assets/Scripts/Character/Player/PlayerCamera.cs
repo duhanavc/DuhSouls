@@ -84,7 +84,7 @@ public class PlayerCamera : MonoBehaviour
         //rotate pivot obj up and down axis.
         cameraRotations = Vector3.zero;
         cameraRotations.x = upAndDownLookAngle;
-        targetRotation = Quaternion.Euler(cameraRotations);
+        targetRotation = Quaternion.Euler(-cameraRotations);
         cameraPivotTransform.localRotation = targetRotation;
 
     }
