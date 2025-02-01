@@ -7,12 +7,18 @@ public class PlayerInputManager : MonoBehaviour
 {
     public static PlayerInputManager instance; //singleton setup
 
-    PlayerControls playerControls; //new input sisteminden class oluþturma
-                                   //iþlemi yaptýktan sonra classa eriþebildik
-    [SerializeField] Vector2 movementInput; //input data
+    PlayerControls playerControls; //new input sisteminden class genarate yaptýktan sonra classa eriþebildik
 
+
+    [Header("Player Movement Input")]
+    [SerializeField] Vector2 movementInput; //input data
     public float verticalInput;
     public float horizontalInput;
+
+    [Header("Camera Movement Input")]
+    [SerializeField] Vector2 cameraInput; //input data
+    public float cameraVerticalInput;
+    public float cameraHorizontalInput;
 
     public float moveAmount;
     
@@ -37,7 +43,8 @@ public class PlayerInputManager : MonoBehaviour
     }
     private void Update()
     {
-        HandleMovementInput();    
+        HandleMovementInput();
+        HandleCameraMovementInput();
     }
     private void OnSceneChange(Scene _oldScene, Scene _newScene)//args0 ve args1 bizim önceki ve sonraki sahnemiz
     {
@@ -57,7 +64,8 @@ public class PlayerInputManager : MonoBehaviour
         {
             playerControls = new PlayerControls();
             
-            playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>(); 
+            playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
+            playerControls.PlayerCamera.Movement.performed += i => cameraInput = i.ReadValue<Vector2>(); // camera movementi için ayný þeyleri yapýyoruz.
             //new input sisteminde önceden kurduðumuz pmovement movemente eriþip eðer bir input girdisi olursaa i olarak alýp 
             //vector2 olan movementInput deðerini bu deðer yapýyoruz ve bu sayede yeni input giriþi olduðunda sürekli güncelleniyor.
 
@@ -91,8 +99,8 @@ public class PlayerInputManager : MonoBehaviour
         verticalInput = movementInput.y;
         horizontalInput = movementInput.x;
 
-        moveAmount = Mathf.Clamp01(Mathf.Abs(verticalInput)+Mathf.Abs(horizontalInput));
 
+        moveAmount = Mathf.Clamp01(Mathf.Abs(verticalInput)+Mathf.Abs(horizontalInput));
         //clamping inputs for more souls like feel.
         if(moveAmount > 0 && moveAmount <= 0.5f)
         {
@@ -103,6 +111,11 @@ public class PlayerInputManager : MonoBehaviour
 
             moveAmount = 1;
         }
+    }
 
+    private void HandleCameraMovementInput()
+    {
+        cameraVerticalInput = cameraInput.y;
+        cameraHorizontalInput = cameraInput.x;
     }
 }

@@ -7,8 +7,10 @@ public class PlayerCamera : MonoBehaviour
 {
     public static PlayerCamera instance;
     public Camera cameraObject;
-
     public PlayerManager player;
+
+
+    [SerializeField] Transform cameraPivotTransform;
 
     [Header("Camera Settings")]
     private float cameraSmoothSpeed = 1;
@@ -48,8 +50,8 @@ public class PlayerCamera : MonoBehaviour
         {
             HandleFollowPlayer();
             //collide with walls and objs
-            //rotate around player
-        }
+            HandleRotations();
+        }   
     }
 
     private void HandleFollowPlayer()
@@ -65,8 +67,25 @@ public class PlayerCamera : MonoBehaviour
         //ilerdie eðer kamera kitliyse, targete bakmasýný zorlamalýyýz
         //kitli deðilse normal þekilde rotatele
 
-        //rightAndLeftLookAngle += PlayerInputManager.instance.cameraHorizontalInput;
+        rightAndLeftLookAngle += (PlayerInputManager.instance.cameraHorizontalInput * rightAndLeftRotationSpeed) * Time.deltaTime;
+        upAndDownLookAngle += (PlayerInputManager.instance.cameraVerticalInput * upAndDownRotationSpeed) * Time.deltaTime;
+        upAndDownLookAngle = Mathf.Clamp(upAndDownLookAngle,minPivot,maxPivot);
 
+        Vector3 cameraRotations;
+        Quaternion targetRotation;
+
+        //rotate this object in right and left axis.
+        cameraRotations = Vector3.zero;
+        cameraRotations.y = rightAndLeftLookAngle;
+        targetRotation = Quaternion.Euler(cameraRotations);
+        transform.rotation = targetRotation;    
+
+
+        //rotate pivot obj up and down axis.
+        cameraRotations = Vector3.zero;
+        cameraRotations.x = upAndDownLookAngle;
+        targetRotation = Quaternion.Euler(cameraRotations);
+        cameraPivotTransform.localRotation = targetRotation;
 
     }
 
