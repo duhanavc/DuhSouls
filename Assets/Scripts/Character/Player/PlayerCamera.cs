@@ -18,12 +18,14 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] float upAndDownRotationSpeed = 220;
     [SerializeField] float minPivot = -30;
     [SerializeField] float maxPivot = 60;
+    [SerializeField] float cameraColliderRadius = 0.2f;
 
     [Header("Camera Values")]
     private Vector3 cameraVelocity;
     private float rightAndLeftLookAngle;
     private float upAndDownLookAngle;
-    
+    private float cameraZPosition;
+    private float targetCameraZPosition;
 
     private void Awake()
     {
@@ -49,8 +51,8 @@ public class PlayerCamera : MonoBehaviour
         if(player != null)
         {
             HandleFollowPlayer();
-            //collide with walls and objs
             HandleRotations();
+            HandleCameraCollisions();
         }   
     }
 
@@ -88,8 +90,20 @@ public class PlayerCamera : MonoBehaviour
         cameraPivotTransform.localRotation = targetRotation;
 
     }
+    private void HandleCameraCollisions()
+    {
+        targetCameraZPosition = cameraZPosition;
 
+        RaycastHit hit;
+        Vector3 direction = cameraObject.transform.position - cameraPivotTransform.position;
 
+        if (Physics.SphereCast(cameraPivotTransform.position, cameraColliderRadius, direction, out hit, Mathf.Abs(targetCameraZPosition), 0)){
+
+            float distanceFromHitObject = Vector3.Distance(cameraObject.transform.position,hit.point);
+        }
+       
+
+    }
 
 
 }
