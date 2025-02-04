@@ -1499,6 +1499,11 @@ PrefabInstance:
       propertyPath: cameraPivotTransform
       value: 
       objectReference: {fileID: 476668279}
+    - target: {fileID: 5455740256547053395, guid: 01c9a5a19167a8a49af7d1894ffe638e,
+        type: 3}
+      propertyPath: collideWithLayers.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
