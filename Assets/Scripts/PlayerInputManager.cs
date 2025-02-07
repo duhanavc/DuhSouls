@@ -7,6 +7,8 @@ public class PlayerInputManager : MonoBehaviour
 {
     public static PlayerInputManager instance; //singleton setup
 
+    public PlayerManager player;
+
     PlayerControls playerControls; //new input sisteminden class genarate yaptýktan sonra classa eriþebildik
 
 

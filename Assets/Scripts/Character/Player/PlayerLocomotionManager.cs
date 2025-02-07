@@ -42,7 +42,8 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     private void HandleGroundedMovement()
     {
         GetVerticalAndHorizontalInput();
-
+        
+        
         //haraket yönümüz kamera perspektifi ve inputlarýmýza göre belirleniyor.
         movementDir = PlayerCamera.instance.transform.forward * verticalMovement;
         movementDir = movementDir + PlayerCamera.instance.transform.right * horizontalMovement;

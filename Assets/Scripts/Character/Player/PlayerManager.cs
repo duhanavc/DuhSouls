@@ -12,6 +12,8 @@ public class PlayerManager : CharacterManager
 
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         PlayerCamera.instance.player = this;
+        PlayerInputManager.instance.player = this;
+
     }
 
     protected override void Update()
