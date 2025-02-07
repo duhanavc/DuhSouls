@@ -64,12 +64,10 @@ public class PlayerCamera : MonoBehaviour
     {
         Vector3 targetCameraPosition = Vector3.SmoothDamp(transform.position, player.transform.position, ref cameraVelocity ,cameraSmoothSpeed * Time.deltaTime);
         transform.position = targetCameraPosition;
-
     }
     
     private void HandleRotations()
     {
-
         //ilerdie eðer kamera kitliyse, targete bakmasýný zorlamalýyýz
         //kitli deðilse normal þekilde rotatele
 
@@ -86,13 +84,11 @@ public class PlayerCamera : MonoBehaviour
         targetRotation = Quaternion.Euler(cameraRotations);
         transform.rotation = targetRotation;    
 
-
         //rotate pivot obj up and down axis.
         cameraRotations = Vector3.zero;
         cameraRotations.x = upAndDownLookAngle;
         targetRotation = Quaternion.Euler(-cameraRotations);
         cameraPivotTransform.localRotation = targetRotation;
-
     }
     
 
@@ -114,7 +110,6 @@ public class PlayerCamera : MonoBehaviour
             {
                 targetCameraZPosition = -cameraColliderRadius;
             }
-
         }
         cameraObjectPosition.z = Mathf.Lerp(cameraObject.transform.localPosition.z, targetCameraZPosition, 0.2f);
         cameraObject.transform.localPosition = cameraObjectPosition;
