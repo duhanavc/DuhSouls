@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class CharacterAnimatorManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   private void UpdateAnimatorMovementParameters(float _horizontal, float _vertical)
+   {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+   }
 }
